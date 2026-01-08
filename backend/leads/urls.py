@@ -18,9 +18,9 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import contact_view
+from . import views
 urlpatterns = [
     
-    path('contact/',contact_view,name='contact')
+    path('contact/',views.contact_view,name='contact')
 ]
 
