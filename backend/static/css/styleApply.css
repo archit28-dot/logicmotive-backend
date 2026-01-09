@@ -1,0 +1,71 @@
+/* Career Hero */
+.career-hero {
+    background: linear-gradient(135deg, #003366, #002244);
+    color: #ffffff;
+    padding: 90px 20px;
+}
+
+.career-hero h1 {
+    font-size: 2.6rem;
+    font-weight: 700;
+}
+
+.career-hero p {
+    font-size: 1.2rem;
+    margin-top: 15px;
+}
+
+/* Program Section */
+.career-program h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #003366;
+}
+
+.program-desc {
+    font-size: 1.05rem;
+    color: #555;
+    margin-top: 15px;
+}
+
+.program-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.program-list li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Application Card */
+.career-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.career-card h4 {
+    font-weight: 600;
+    color: #003366;
+}
+
+/* Button */
+.career-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #003366;
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.career-btn:hover {
+    background-color: #002244;
+    transform: translateY(-2px);
+}
