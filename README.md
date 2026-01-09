@@ -19,3 +19,13 @@ Backend system for LogicMotive corporate website built using Django.
 3. Install dependencies
 4. Run migrations
 5. Start server
+
+## API Endpoints
+
+### POST /contact/
+Accepts JSON contact form data.
+Returns JSON success or error message.
+
+### POST /careers/apply/
+Accepts multipart form data with PDF resume.
+Returns JSON success or error message.
