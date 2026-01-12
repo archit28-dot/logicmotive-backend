@@ -16,14 +16,19 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation(); 
 
       const parent = link.parentElement;
-
+      const menu = parent.querySelector(".dropdown-menu");
+      const isOpen = parent.classList.contains("active");
       // Close other open dropdowns
       document.querySelectorAll(".dropdown").forEach(d => {
-        if (d !== parent) d.classList.remove("active");
+       d.classList.remove("active");
+       const m = d.querySelector(".dropdown-menu");
+       if (m) m.style.display = "none";
       });
-
-      // Toggle the current one
-      parent.classList.toggle("active");
+       if (!isOpen) {
+        parent.classList.add("active");
+        menu.style.display = "block";
+       }
+    
     });
   });
 

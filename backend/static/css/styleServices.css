@@ -2,11 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto', 'Open Sans', 'Quicksand', Arial, sans-serif;;
 }
 
 .hero-section {
-    height: 45vh;
+    height: 50vh;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -14,10 +14,12 @@
     align-items: center;
     text-align: center;
     padding: 0 20px;
+    margin-bottom: 20px;
 }
 
 /* SERVICES label */
 .hero-section h3:first-child {
+    margin-top: 40px;
     font-size: 14px;
     letter-spacing: 2px;
     font-weight: 600;
