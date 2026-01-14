@@ -1,3 +1,6 @@
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector(".menu-toggle");
   const navLinks = document.querySelector(".nav-links");
@@ -43,9 +46,31 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 // Make sure Bootstrap JS is included
-var kickstartModal = new bootstrap.Modal(document.getElementById('kickstartModal'));
 
-document.getElementById('kickstartBtn').addEventListener('click', function () {
-  kickstartModal.show();
+
+// Module Selection Logic
+
+document.addEventListener("DOMContentLoaded", function () {
+  const moduleSelect = document.getElementById("moduleSelect");
+
+  // Module sections: each contains options + file upload
+  const sections = {
+    internship: document.getElementById("internshipOptions"),
+    training: document.getElementById("trainingOptions"),
+    job: document.getElementById("jobOptions")
+  };
+
+  moduleSelect.addEventListener("change", function () {
+    const selected = this.value;
+
+    // Hide all sections first
+    Object.values(sections).forEach(sec => sec.classList.add("d-none"));
+
+    // Show the selected module's section
+    if (sections[selected]) sections[selected].classList.remove("d-none");
+
+    console.log("Selected module:", selected);
+  });
 });
-// Toggle contact section on click
+
+

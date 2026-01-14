@@ -19,7 +19,7 @@
 }
 
 body {
-    font-family: 'Roboto', 'Open Sans', 'Quicksand', Arial, sans-serif;;
+    font-family: 'Roboto', 'Open Sans', 'Quicksand', Arial, sans-serif;
 
 }
 
@@ -373,18 +373,18 @@ body {
 .hero-content button{
     margin-top: 20px;
 }
-.carousel-item {
+/* .carousel-item-home {
   position: relative;
 }
 
-.carousel-item::before {
+.carousel-item-home::before {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
   z-index: 1;
    pointer-events: none;
-}
+} */
 
 .carousel-caption {
   z-index: 2;
