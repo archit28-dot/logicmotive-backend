@@ -45,34 +45,25 @@
         <span></span>
       </div>
       <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="../core/about.html">About Us</a></li>
-        <li class="dropdown">
-            <a href="#">Products</a>
-
-            <ul class="dropdown-menu">
-              <li><a href="#">Rise With Sap</a></li>
-              <li><a href="#">S4 HANA</a></li>
-              <li><a href="#">SAP Business One</a></li>
-              <li><a href="#">ERP Next</a></li>
-
-            </ul>
-
-          </li>
+        <li><a href="{% url 'home_page' %}">Home</a></li>
+        <li><a href="{% url 'abt' %}">About Us</a></li>
+        
+        <li><a href="{% url 'prod' %}">Products</a></li>
         <li class="dropdown">
           <a href="javascript:void(0)">Services</a>
           <ul class="dropdown-menu">
-            <li><a href="services/sap-implementation.html">Implementation and Rollout</a></li>
-            <li><a href="services/ams.html">AMS</a></li>
-            <li><a href="#">Android & Web Development</a></li>
-            <li><a href="services/staffing.html">Staffing</a></li>
+            <li><a href="{% url 'serv' %}#sap-services">SAP Services</a></li>
+            <li><a href="{% url 'serv' %}#staffing-solutions">Staffing Solutions</a></li>
+            <li><a href="{% url 'serv' %}#erpnext">ERPNext Implementation</a></li>
+            <li><a href="{% url 'serv' %}#pmo-audit">PMO and Audit Services</a></li>
+            <li><a href="{% url 'serv' %}#digital-transformation">Digital Transformation</a></li>
           </ul>
         </li>
 
-        <li><a href="careers.html">Careers</a></li>
-        <li><a href="contact_us.html">Contact Us</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="help.html">Help</a></li>
+        <li><a href="{% url 'job_page' %}">Careers</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+        <!-- <li><a href="blog.html">Blog</a></li>
+        <li><a href="help.html">Help</a></li> -->
       </ul>
 
       <div class="dot-menu">
@@ -131,50 +122,58 @@
         <div class="col-lg-6">
           <div class="career-card">
             <h4 class="mb-3">Apply Now</h4>
+<div class="career-form-container">
+         <form id="applyJobForm" method="post" enctype="multipart/form-data" action="{% url 'apply_job' %}">
+  {% csrf_token %}
+  <div class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label">Full Name</label>
+      <input type="text" class="form-control" name="name" required>
+    </div>
 
-            <form enctype="multipart/form-data">
-              <div class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label">Email Address</label>
+      <input type="email" class="form-control" name="email" required>
+    </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Full Name</label>
-                  <input type="text" class="form-control" required>
-                </div>
+    <div class="col-md-6">
+      <label class="form-label">Mobile Number</label>
+      <input type="tel" class="form-control" name="mobile" required>
+    </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Email Address</label>
-                  <input type="email" class="form-control" required>
-                </div>
+    <div class="col-md-6">
+      <label class="form-label">Experience Level</label>
+      <select class="form-select" name="experience" required>
+        <option value="">Select</option>
+        <option value="FRESHER">Fresher</option>
+        <option value="0-2">0-2 Years</option>
+        <option value="2-5">2-5 Years</option>
+        <option value="5+">5+ Years</option>
+      </select>
+    </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Mobile Number</label>
-                  <input type="tel" class="form-control" required>
-                </div>
+    <div class="col-12">
+      <label class="form-label">Upload Resume (PDF)</label>
+      <input type="file" class="form-control" accept=".pdf" name="resume" required>
+    </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Experience Level</label>
-                  <select class="form-select" required>
-                    <option value="">Select</option>
-                    <option>Fresher</option>
-                    <option>0–2 Years</option>
-                    <option>2–5 Years</option>
-                    <option>5+ Years</option>
-                  </select>
-                </div>
+    <div class="col-12">
+      <button type="submit" id="applyBtn" class="btn btn-primary career-btn">
+        Submit Application
+      </button>
+    </div>
 
-                <div class="col-12">
-                  <label class="form-label">Upload Resume (PDF)</label>
-                  <input type="file" class="form-control" accept=".pdf" required>
-                </div>
-
-                <div class="col-12">
-                  <button type="submit" class="btn btn-primary career-btn">
-                    Submit Application
-                  </button>
-                </div>
-
-              </div>
-            </form>
-
+    <div class="col-12">
+      <p id="applyResponse" class="mt-3 fw-bold"></p>
+    </div>
+  </div>
+</form>
+</div>
+<div id="successCard" style="display: none; text-align: center; padding: 40px; border: 1px solid #ddd; border-radius: 10px;">
+        <h2 style="color: green;">✔ Application Submitted!</h2>
+        <p>Thank you, your application has been received.</p>
+        <button onclick="window.location.reload()" class="btn btn-link">Submit another</button>
+    </div>
           </div>
         </div>
 
@@ -250,6 +249,58 @@
   } else {
     console.error("Could not find dot-menu or contactSection in the HTML");
   }
+ document.getElementById('applyJobForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const responsePara = document.getElementById('applyResponse');
+    const submitBtn = document.getElementById('applyBtn');
+
+    // 1. Clear previous message and disable button
+    responsePara.innerText = "Processing your application...";
+    responsePara.style.color = "blue";
+    submitBtn.disabled = true;
+
+    // 2. Capture all data (including the file)
+    const formData = new FormData(form);
+
+    // 3. Send to Django Backend
+    fetch(form.action, {
+        method: 'POST',
+        body: formData, // Sending multipart/form-data
+        headers: {
+            'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        submitBtn.disabled = false;
+        if (data.success) {
+            responsePara.style.color = "green";
+            responsePara.innerText = data.message;
+            form.reset(); // Clear form on success
+        } else {
+            responsePara.style.color = "red";
+            responsePara.innerText = "Error: " + data.error;
+        }
+        // NEW: The Auto-Vanish Logic
+        // 10000 milliseconds = 10 seconds
+        setTimeout(() => {
+            responsePara.innerText = "";
+        }, 5000);
+    })
+    .catch(error => {
+        submitBtn.disabled = false;
+        responsePara.style.color = "red";
+        responsePara.innerText = "An unexpected error occurred.";
+        console.error('Error:', error);
+    });
+});
+
+// Clear message when user starts typing again
+document.getElementById('applyJobForm').addEventListener('input', function() {
+    document.getElementById('applyResponse').innerText = "";
+}); 
 </script>
 <script src="../../static/js/main.js"></script>
 

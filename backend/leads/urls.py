@@ -18,9 +18,12 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views
+from leads import views
+
 urlpatterns = [
     
-    path('contact/',views.contact_view,name='contact')
+    path('',views.contactpage,name='contact'),
+    path('/api-connect',views.contact_api,name='contact_api')
 ]
+
 

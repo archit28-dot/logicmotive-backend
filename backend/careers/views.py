@@ -2,12 +2,14 @@ from django.shortcuts import render
 from .models import JobApplication
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage,send_mail
 from django.conf import settings
 
 # Create your views here.
-@csrf_exempt
-def apply_job(request):
+def job_apply_page(request):
+    return render(request,'careers/apply.html')
+
+def apply_job_view(request):
     if request.method != "POST":
         return JsonResponse({"error":"Invalid request method"})
     else:
@@ -51,7 +53,7 @@ def apply_job(request):
             resume=resume
         )
         
-        email = EmailMessage(
+        msg = EmailMessage(
                     subject="New Job Application Received",
                     body=f"""
                 Name: {name}
@@ -64,9 +66,25 @@ def apply_job(request):
                 )
 
         # Attach the PDF resume
-        email.attach_file(job.resume.path)
+        msg.attach_file(job.resume.path)
 
-        email.send(fail_silently=False)
+        msg.send(fail_silently=False)
+        
+        send_mail(
+        subject="We received your message | LogicMotive",
+        message=(
+            f"Hi {name},\n\n"
+            "Thank you for applying to LogicMotive.\n\n"
+            "We have received your application and one of our consultants "
+            "will contact you within 1 business day.\n\n"
+            "If you did not submit any job application, please ignore this email.\n\n"
+            "Best regards,\n"
+            "LogicMotive Team\n"
+            "https://logicmotive.in"
+        ),
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=[email],  # USER email
+        fail_silently=False,
+        )
 
-
-        return JsonResponse({"success":True,"status": "application submitted"}, status=201)
+        return JsonResponse({"success":True,"message": "application submitted"}, status=201)

@@ -45,35 +45,26 @@
         <span></span>
       </div>
       <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="../core/about.html">About Us</a></li>
-       <li class="dropdown">
-            <a href="#">Products</a>
-
-            <ul class="dropdown-menu">
-              <li><a href="#">Rise With Sap</a></li>
-              <li><a href="#">S4 HANA</a></li>
-              <li><a href="#">SAP Business One</a></li>
-              <li><a href="#">ERP Next</a></li>
-
-            </ul>
-
-          </li>
+        <li><a href="{% url 'home_page' %}">Home</a></li>
+        <li><a href="{% url 'abt' %}">About Us</a></li>
+        <li><a href="{% url 'prod' %}">Products</a></li>
+       
 
         <li class="dropdown">
           <a href="javascript:void(0)">Services</a>
           <ul class="dropdown-menu">
-            <li><a href="services/sap-implementation.html">Implementation and Rollout</a></li>
-            <li><a href="services/ams.html">AMS</a></li>
-            <li><a href="#">Android & Web Development</a></li>
-            <li><a href="services/staffing.html">Staffing</a></li>
+              <li><a href="{% url 'serv' %}#sap-services">SAP Services</a></li>
+              <li><a href="{% url 'serv' %}#staffing-solutions">Staffing Solutions</a></li>
+              <li><a href="{% url 'serv' %}#erpnext">ERPNext Implementation</a></li>
+              <li><a href="{% url 'serv' %}#pmo-audit">PMO and Audit Services</a></li>
+              <li><a href="{% url 'serv' %}#digital-transformation">Digital Transformation</a></li>
           </ul>
         </li>
 
-        <li><a href="careers.html">Careers</a></li>
-        <li><a href="contact_us.html">Contact Us</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="help.html">Help</a></li>
+        <li><a href="{% url 'job_page' %}">Careers</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+        <!-- <li><a href="blog.html">Blog</a></li>
+        <li><a href="help.html">Help</a></li> -->
       </ul>
 
       <div class="dot-menu">
@@ -100,7 +91,11 @@
     <h1>Enterprise Solutions That Drive Business Growth</h1>
     <h3>From SAP implementations and staffing solutions to modern digital transformation.
     </h3>
-    <button class="btn btn-primary" href="#contact">Book a Consultation</button>
+    <form method="get" action="{% url 'contact' %}">
+      
+      <button class="btn btn-primary">Book a Consultation</button>
+    </form>
+    
   </div>
   <section class="service-card">
 

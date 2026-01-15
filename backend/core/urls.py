@@ -18,15 +18,12 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from leads import views
-
+from . import views
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',include("core.urls")),
-    path('contact/',include("leads.urls")),
-    path('careers/',include("careers.urls")),
+    path('',views.home_page,name='home_page'),
+    path('about/',views.about_page,name='abt'),
+    path('products/',views.product_page,name='prod'),
+    path('services/',views.service_page,name='serv')
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+
 

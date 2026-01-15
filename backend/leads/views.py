@@ -1,13 +1,17 @@
 # Create your views here.
 from django.http import JsonResponse
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from .models import Lead
 import json
 from django.core.mail import send_mail
 from django.conf import settings
-
-@csrf_exempt
-def contact_view(request):
+def contactpage(request):
+    
+    if request.method=='GET':
+        return render(request,'leads/contact.html')
+    
+def contact_api(request):
     if request.method != 'POST':
         return JsonResponse({"success":False,"error":"Invalid request method (only POST allowed)"},status=400)
     
@@ -43,7 +47,7 @@ def contact_view(request):
     valid_services=[]
     for choice in Lead.SERVICE_CHOICES:
         valid_services.append(choice[0])
-        
+       
     if service not in valid_services:
         return JsonResponse({"success":False,"error": "Invalid service selected"}, status=400)
     
@@ -71,4 +75,25 @@ def contact_view(request):
         recipient_list=[settings.EMAIL_HOST_USER],
         fail_silently=False,
     )
-    return JsonResponse({"success":True,"status": "success"}, status=201)
+    
+    send_mail(
+    subject="We received your message | LogicMotive",
+    message=(
+        f"Hi {name},\n\n"
+        "Thank you for contacting LogicMotive.\n\n"
+        "We have received your message and one of our consultants "
+        "will review it and get back to you within 1 business day.\n\n"
+        "If you did not submit this request, please ignore this email.\n\n"
+        "Best regards,\n"
+        "LogicMotive Team\n"
+        "https://logicmotive.in"
+    ),
+    from_email=settings.EMAIL_HOST_USER,
+    recipient_list=[email],  # USER email
+    fail_silently=False,
+    )
+    
+    return JsonResponse({
+        "success":True,
+        "message":"Enquiry successful"
+    })

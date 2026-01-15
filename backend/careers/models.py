@@ -5,8 +5,10 @@ from django.db import models
 
 class JobApplication(models.Model):
     EXPERIENCE_CHOICES = [
-        ('FRESHER', 'Fresher'),
-        ('EXPERIENCED', 'Experienced'),
+    ("FRESHER", "Fresher"),
+    ("0-2", "0-2 years"),
+    ("2-5", "2-5 years"),
+    ("5+", "5+ years"),
     ]
 
     name = models.CharField(max_length=100)

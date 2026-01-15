@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Quicksand:wght@400;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link href="../static/css/style.css" rel="stylesheet">
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
 
 <body>
@@ -45,35 +46,26 @@
           <span></span>
         </div>
         <ul class="nav-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="../core/about.html">About Us</a></li>
-           <li class="dropdown">
-            <a href="#">Products</a>
-
-            <ul class="dropdown-menu">
-              <li><a href="#">Rise With Sap</a></li>
-              <li><a href="#">S4 HANA</a></li>
-              <li><a href="#">SAP Business One</a></li>
-              <li><a href="#">ERP Next</a></li>
-
-            </ul>
-
-          </li>
+          <li><a href="{% url 'home_page' %}">Home</a></li>
+          <li><a href="{% url 'abt' %}">About Us</a></li>
+           
+            <a href="{% url 'prod' %}">Products</a>
 
           <li class="dropdown">
-            <a href="javascript:void(0)">Services</a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Implementation and Rollout</a></li>
-              <li><a href="#">AMS</a></li>
-              <li><a href="#">Android & Web Development</a></li>
-              <li><a href="#">Staffing</a></li>
+            <a href="{% url 'serv' %}">Services</a>
+             <ul class="dropdown-menu">
+              <li><a href="{% url 'serv' %}#sap-services">SAP Services</a></li>
+              <li><a href="{% url 'serv' %}#staffing-solutions">Staffing Solutions</a></li>
+              <li><a href="{% url 'serv' %}#erpnext">ERPNext Implementation</a></li>
+              <li><a href="{% url 'serv' %}#pmo-audit">PMO and Audit Services</a></li>
+              <li><a href="{% url 'serv' %}#digital-transformation">Digital Transformation</a></li>
             </ul>
-          </li>
+           </li> 
 
-          <li><a href="careers.html">Careers</a></li>
-          <li><a href="contact_us.html">Contact Us</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="help.html">Help</a></li>
+          <li><a href="{% url 'job_page' %}">Careers</a></li>
+          <li><a href="{% url 'contact' %}">Contact Us</a></li>
+          <!-- <li><a href="blog.html">Blog</a></li>
+          <li><a href="help.html">Help</a></li> -->
         </ul>
 
         <div class="dot-menu">
@@ -112,8 +104,10 @@
               <h1>Let's Turn Ideas Into Reality</h1>
               <p>Your trusted Sherpa for Digital Transformation. From SAP Implementations to Next-Gen AI
                 Solutions.</p>
-
-              <button class="btn btn-primary">Book a Consultation</button>
+                <form method="get" action="{% url 'contact' %}">
+                  <button class="btn btn-primary">Book a Consultation</button>
+                </form>
+              
 
             </div>
           </div>
@@ -123,7 +117,9 @@
               <h1>Innovate Transform Grow</h1>
               <p>Digital solutions that drive business forward. From smart automation to next-gen
                 innovation, we empower your growth</p>
-              <button class="btn btn-primary">Book a Consultation</button>
+              <form method="get" action="{% url 'contact' %}">
+                  <button class="btn btn-primary">Book a Consultation</button>
+              </form>
             </div>
           </div>
           <div class="carousel-item">
@@ -132,7 +128,9 @@
               <h1>Driving Digital Success</h1>
               <p>Smart solutions that boost efficiency and growth.Innovating your business for the future
               </p>
-              <button class="btn btn-primary" href="#contact">Book a Consultation</button>
+              <form method="get" action="{% url 'contact' %}">
+                  <button class="btn btn-primary">Book a Consultation</button>
+              </form>
             </div>
           </div>
         </div>
@@ -192,7 +190,7 @@
                   <p class="card-text">
                     End-to-end implementation for SAP ECC, S/4 HANA, and SAP Business One.
                   </p>
-                  <a href="#" class="card-link">Learn More</a>
+                  <a href="{% url 'serv' %}#sap-services" class="card-link">Learn More</a>
                 </div>
               </div>
             </div>
@@ -204,7 +202,7 @@
                   <p class="card-text">
                     Rapid deployment of skilled consultants from a pool of 5000+ candidates.
                   </p>
-                  <a href="#" class="card-link">Learn More</a>
+                  <a href="{% url 'serv' %}#staffing-solutions" class="card-link">Learn More</a>
                 </div>
               </div>
             </div>
@@ -215,7 +213,7 @@
                   <p class="card-text">
                     The best open-source alternative to proprietary ERPs for growing businesses.
                   </p>
-                  <a href="#" class="card-link">Learn More</a>
+                  <a href="{% url 'serv' %}#erpnext" class="card-link">Learn More</a>
                 </div>
               </div>
             </div>
@@ -232,7 +230,7 @@
                   <p class="card-text">
                     SAP Project Management Office support and ITGC Audits.
                   </p>
-                  <a href="#" class="card-link">Learn More</a>
+                  <a href="{% url 'serv' %}#pmo-audit" class="card-link">Learn More</a>
                 </div>
               </div>
             </div>
@@ -244,7 +242,7 @@
                   <p class="card-text">
                     Custom Web, Mobile, and Data solutions.
                   </p>
-                  <a href="#" class="card-link">Learn More</a>
+                  <a href="{% url 'serv' %}#digital-transformation" class="card-link">Learn More</a>
                 </div>
               </div>
             </div>
@@ -310,7 +308,7 @@
 
         </div>
         <div class="why-btn">
-          <a href="#" class="btn btn-outline-primary">Let’s Transform Your Business</a>
+          <a href="{% url 'contact' %}" class="btn btn-outline-primary">Let’s Transform Your Business</a>
         </div>
 
       </section>
@@ -337,9 +335,12 @@
             <h4>Experience Letter</h4>
           </div>
         </div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyFormModal">
-          Apply Now
-        </button>
+        <form action="{% url 'job_page'%}">
+          <button type="submit" class="btn btn-primary">
+            Apply Now
+          </button>
+        </form>
+        
 
 
 
@@ -383,8 +384,8 @@
           </ul>
 
           <div class="social-links">
-            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/company/logicmotiveconsultant/posts/?feedView=all" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://x.com/LogicmotiveC"><i class="fa-brands fa-twitter"></i></a>
           </div>
         </div>
 

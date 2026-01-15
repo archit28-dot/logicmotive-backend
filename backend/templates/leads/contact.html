@@ -45,35 +45,25 @@
         <span></span>
       </div>
       <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="../core/about.html">About Us</a></li>
-      <li class="dropdown">
-            <a href="#">Products</a>
-
-            <ul class="dropdown-menu">
-              <li><a href="#">Rise With Sap</a></li>
-              <li><a href="#">S4 HANA</a></li>
-              <li><a href="#">SAP Business One</a></li>
-              <li><a href="#">ERP Next</a></li>
-
-            </ul>
-
-          </li>
+        <li><a href="{% url 'home_page' %}">Home</a></li>
+        <li><a href="{% url 'abt' %}">About Us</a></li>
+        <li><a href="{% url 'prod' %}">Products</a></li>
 
         <li class="dropdown">
           <a href="javascript:void(0)">Services</a>
           <ul class="dropdown-menu">
-            <li><a href="services/sap-implementation.html">Implementation and Rollout</a></li>
-            <li><a href="services/ams.html">AMS</a></li>
-            <li><a href="#">Android & Web Development</a></li>
-            <li><a href="services/staffing.html">Staffing</a></li>
+            <li><a href="{% url 'serv' %}#sap-services">SAP Services</a></li>
+            <li><a href="{% url 'serv' %}#staffing-solutions">Staffing Solutions</a></li>
+            <li><a href="{% url 'serv' %}#erpnext">ERPNext Implementation</a></li>
+            <li><a href="{% url 'serv' %}#pmo-audit">PMO and Audit Services</a></li>
+            <li><a href="{% url 'serv' %}#digital-transformation">Digital Transformation</a></li>
           </ul>
         </li>
 
-        <li><a href="careers.html">Careers</a></li>
-        <li><a href="contact_us.html">Contact Us</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="help.html">Help</a></li>
+        <li><a href="{% url 'job_page' %}">Careers</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+        <!-- <li><a href="blog.html">Blog</a></li>
+        <li><a href="help.html">Help</a></li> -->
       </ul>
 
       <div class="dot-menu">
@@ -117,55 +107,58 @@
         <!-- RIGHT FORM -->
         <div class="col-lg-7">
           <div class="contact-card">
-            <form>
+            <div class="container mt-5">
+    <h2>Book a Consultation</h2>
+    <form id="contactform" method="post" action="{% url 'contact_api' %}">
+        {% csrf_token %}
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Name</label>
+                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+            </div>
 
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <label class="form-label">Name</label>
-                  <input type="text" class="form-control" placeholder="Your Name" required>
-                </div>
+            <div class="col-md-6">
+                <label class="form-label">Email Address</label>
+                <input type="email" name="email" class="form-control" placeholder="you@company.com" required>
+            </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Email Address</label>
-                  <input type="email" class="form-control" placeholder="you@company.com" required>
-                </div>
+            <div class="col-md-6">
+                <label class="form-label">Mobile Number</label>
+                <input type="tel" name="mobile" class="form-control" placeholder="+91 XXXXX XXXXX" required>
+            </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Mobile Number</label>
-                  <input type="tel" class="form-control" placeholder="+91 XXXXX XXXXX" required>
-                </div>
+            <div class="col-md-6">
+                <label class="form-label">Company Name</label>
+                <input type="text" name="company" class="form-control" placeholder="Company Name" required>
+            </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Company Name</label>
-                  <input type="text" class="form-control" placeholder="Company Name">
-                </div>
-
-                <div class="col-12">
-                  <label class="form-label">Service Interested In</label>
-                  <select class="form-select" required>
+            <div class="col-12">
+                <label class="form-label">Service Interested In</label>
+                <select name="service" class="form-select" required>
                     <option value="">Select a Service</option>
-                    <option>SAP Implementation / Support</option>
-                    <option>Staffing Solutions</option>
-                    <option>ERPNext Implementation</option>
-                    <option>AccessIntel</option>
-                    <option>Audit / Advisory</option>
-                  </select>
-                </div>
+                    <option value="SAP">SAP Implementation / Support</option>
+                    <option value="STAFF">Staffing Solutions</option>
+                    <option value="ERP">ERPNext Implementation</option>
+                    <option value="ACCESS">AccessIntel</option>
+                    <option value="AUDIT">Audit / Advisory</option>
+                </select>
+            </div>
 
-                <div class="col-12">
-                  <label class="form-label">Message</label>
-                  <textarea class="form-control" rows="4" placeholder="Briefly describe your requirement"></textarea>
-                </div>
+            <div class="col-12">
+                <label class="form-label">Message</label>
+                <textarea name="message" class="form-control" rows="4" placeholder="Briefly describe your requirement" required></textarea>
+            </div>
 
-                <div class="col-12">
-                  <button type="submit" class="btn btn-primary contact-btn">
-                    Book a Consultation
-                  </button>
-                </div>
-
-              </div>
-
-            </form>
+            <div class="col-12">
+                <button type="submit" id="submitBtn" class="btn btn-primary">Book a Consultation</button>
+            </div>
+            
+            <div class="col-12">
+                <p id="contactResponse" class="mt-3 fw-bold"></p>
+            </div>
+        </div>
+    </form>
+</div>
           </div>
         </div>
 
@@ -193,6 +186,72 @@
   } else {
     console.error("Could not find dot-menu or contactSection in the HTML");
   }
+const contactForm = document.getElementById('contactform');
+const responsePara = document.getElementById('contactResponse');
+
+// Listen for any input changes within the form
+contactForm.addEventListener('input', function() {
+    // Clear the message
+    responsePara.innerText = "";
+    
+    // Optional: Reset any specific styling you applied
+    responsePara.style.color = ""; 
+});
+document.getElementById('contactform').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const responsePara = document.getElementById('contactResponse');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    // Disable button to prevent multiple clicks
+    submitBtn.disabled = true;
+    responsePara.innerText = "Sending...";
+    responsePara.style.color = "blue";
+
+    // 1. Map HTML "name" attributes to the JSON keys your API expects
+    const formData = new FormData(form);
+    const payload = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        mobile: formData.get('mobile'),
+        company: formData.get('company'),
+        service: formData.get('service'),
+        message: formData.get('message')
+    };
+
+    // 2. Fetch call to your Django API
+    fetch(form.action, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(response => response.json())
+    .then(data => {
+        submitBtn.disabled = false;
+        
+        if (data.success) {
+            responsePara.style.color = 'green';
+            responsePara.innerText = data.message; // "Enquiry successful"
+            form.reset(); // Clear the form
+        } else {
+            responsePara.style.color = 'red';
+            responsePara.innerText = "Error: " + data.error; // Display specific validation error
+        }
+        setTimeout(() => {
+            responsePara.innerText = "";
+        }, 5000);
+    })
+    .catch(error => {
+        submitBtn.disabled = false;
+        responsePara.style.color = 'red';
+        responsePara.innerText = "Something went wrong. Please try again later.";
+        console.error('Error:', error);
+    });
+});
 </script>
 
 </html>
