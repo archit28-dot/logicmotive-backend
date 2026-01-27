@@ -2,299 +2,255 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Career</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Quicksand:wght@400;700&display=swap"
-    rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link href="../../static/css/style.css" rel="stylesheet">
-  <link href="../../static/css/styleApply.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | Logic-Motive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="../../static/css/style.css">
+        <link rel="stylesheet" href="../../static/css/styleApply.css">
+   
 </head>
 
 <body>
-
-<header>
-      <div class="top-bar">
+           <header>
+    <div class="top-bar">
         <div class="container">
-
-          <div class="top-left">
-            <ul>
-              <li><i class="fa-solid fa-envelope"></i>Sales@logicmotive.in</li>
-              <li><i class="fa fa-phone"></i> +91-7276075921 </li>
-            </ul>
-          </div>
-
-          <div class="top-right">
-            <ul>
-              <li><i class="fa fa-clock"></i> Mon–Fri: 9:00 AM – 6:00 PM / Closed on Weekends</li>
-            </ul>
-          </div>
-
+            <div class="top-left">
+                <ul><li><i class="fa-solid fa-envelope"></i>presales@logic-motive.com</li><li><i class="fa fa-phone"></i> +91-7276075921</li></ul>
+            </div>
+            <div class="top-right"><ul><li><i class="fa fa-clock"></i> Mon–Fri: 9:00 AM – 6:00 PM</li></ul></div>
         </div>
-      </div>
-      <nav class="navbar">
+    </div>
 
+    <nav class="navbar">
         <div class="logo">
-          <img src="../../static/assets/LogicMotive Consultant (1).webp" alt="Logic Motive Logo" height="40">
+            <img src="../../static/assets/LogicMotive Consultant (1) copy.webp" alt="Logic Motive Logo" height="40">
         </div>
-        <div class="menu-toggle">
-          <span></span>
-          <span></span>
-          <span></span>
+
+        <div class="menu-toggle" id="mobile-toggle">
+            <span></span><span></span><span></span>
         </div>
+
         <ul class="nav-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="../core/about.html">About Us</a></li>
-         
-           <li><a href="../core/about.html">Product</a></li>
-          <li class="dropdown">
-         
-              <a  href="#" class="dropdown-toggle"  data-bs-toggle="dropdown"
-               >
-                Services
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">SAP Services</a></li>
-                <li><a class="dropdown-item" href="#">Staffing Solution</a></li>
-                <li><a class="dropdown-item" href="#">ERPNext Implementation</a></li>
-                <li><a class="dropdown-item" href="#">PMO & Audit Services</a></li>
-                <li><a class="dropdown-item" href="#">Digital Transformation</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Services +</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">SAP Services</a></li>
+                    <li><a class="dropdown-item" href="#">Staffing Solution</a></li>
+                    <li><a class="dropdown-item" href="#">ERP Next Implementation</a></li>
+                    <li><a class="dropdown-item" href="#">PMO & Audit Services</a></li>
+                    <li><a class="dropdown-item" href="#">Digital Tranformation</a></li>
 
-              </ul>
-          </li>
-         
 
-          <li><a href="careers.html">Careers</a></li>
-          <li><a href="contact_us.html">Contact Us</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="help.html">Help</a></li>
+
+                </ul>
+            </li>
+             <li><a href="#">Product</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact Us</a></li>
+           
+             
         </ul>
 
-        <div class="dot-menu">
-          <span></span> <span></span>
-          <span></span> <span></span>
-          <span></span><span></span>
-          <span></span> <span></span>
-          <span></span>
+        <div class="dot-menu" id="dot-toggle">
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
         </div>
-        <!-- Contact Section -->
-        <div class="contact-section" id="contactSection" style="display: none;">
-          <img src="../static/assets/LogicMotive Consultant (1).webp" alt="Logic Motive Logo" height="40">
-          <p>Logic-motive can help you grow higher with the right SAP consulting services and solutions at the right
-            time. Let us do it for you!</p>
-          <div><i class="fa-solid fa-location-dot"></i>Mukai Chowk Pune</div>
-          <div><i class="fa-solid fa-phone"></i>+91-7276075921</div>
-          <div><i class="fa-solid fa-envelope"></i> sales@logicmotive.in</div>
-          <div><i class="fa-solid fa-clock"></i> 9:00 - 17:00</div>
-        </div>
-      </nav>
-    </header>
+    </nav>
 
-  <!-- Careers Hero -->
-  <section class="career-hero">
-    <div class="container text-center">
-      <h1>Launch Your Career with LogicMotive</h1>
-      <p>
-        Kickstart your IT journey with our structured SAP Training & Internship program.
-      </p>
+   <div class="contact-section" id="contactSection">
+    <span class="close-contact">&times;</span>
+    
+    <img src="../../static/assets/LogicMotive Consultant (1) copy.webp" alt="Logic Motive Logo" height="40">
+    
+    <p class="contact-desc">
+        Logic-motive can help you grow higher with the right SAP consulting services and solutions at the right time. Let us do it for you!
+    </p>
+    
+    <div class="contact-info">
+        <div class="info-item"><i class="fa-solid fa-location-dot"></i> Mukai Chowk Pune</div>
+        <div class="info-item"><i class="fa-solid fa-phone"></i> +91-7276075921</div>
+        <div class="info-item"><i class="fa-solid fa-envelope"></i>presales@logic-motive.com</div>
+        <div class="info-item"><i class="fa-solid fa-clock"></i> 9:00 - 17:00</div>
     </div>
-  </section>
+</div>
+</header>
+    <section class="career-hero">
+        <div class="container">
+            <h1 class="reveal" style="letter-spacing: 2px;">Launch Your Career with Logic-Motive</h1>
+            <p class="reveal" style="transition-delay: 0.1s;  letter-spacing: 1px;">Kickstart your IT journey with our
+                structured SAP Training
+                & Internship program.</p>
+        </div>
+    </section>
 
-  <!-- Jumpstart Program -->
-  <section class="career-program py-5">
-    <div class="container">
-      <div class="row align-items-center g-5">
+    <section class="career-main">
+        <div class="container">
+            <div class="main-wrapper">
 
-        <!-- Program Info -->
-        <div class="col-lg-6">
-          <h2>Jumpstart: SAP Training & Internship</h2>
-          <p class="program-desc">
-            A comprehensive platform designed to equip recent graduates and professionals
-            with in-demand SAP skills. Whether you are a fresher or planning a career shift,
-            this program provides the perfect launchpad into IT.
+                <div class="info-panel reveal" style="transition-delay: 0.2s; margin-top: 70px; width:500px;">
+                    <h1 style="color:#003366">Jumpstart: SAP Training & Internship</h1>
+                    <p style="letter-spacing: 0.5px;">A comprehensive platform designed to equip recent graduates and
+                        professionals with in-demand SAP
+                        skills. Whether you are a fresher or looking to shift into IT, this program offers the perfect
+                        launchpad.</p>
+                    <ul class="program-list">
+                        <li>SAP Module Training</li>
+                        <li>Project Management Basics</li>
+                        <li>Live Internship Projects</li>
+                        <li>Experience Letter</li>
+                    </ul>
+                </div>
+
+                <div class="career-card reveal" style="transition-delay: 0.4s; width:600px; margin-top:70px;">
+                    <h1>Apply Now</h1>
+                    <form id="careerForm">
+                        <div class="form-row-split">
+                            <div class="field-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" placeholder="Your" required>
+                            </div>
+                            <div class="field-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" placeholder="email@company.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row-split">
+                            <div class="field-group">
+                                <label class="form-label">Mobile Number</label>
+                                <input type="tel" class="form-control" placeholder="+91" required>
+                            </div>
+                            <div class="field-group">
+                                <label class="form-label">Module</label>
+                                <select class="form-select" id="moduleSelect" required>
+                                    <option value="" disabled selected hidden>Select Module</option>
+                                    <option value="internship">Internship</option>
+                                    <option value="training">Training</option>
+                                    <option value="job">Job</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="internshipOptions" class="field-group d-none">
+                            <div class="form-row-split">
+                                <div class="field-group">
+                                    <label class="form-label">Internship Type</label>
+                                    <select class="form-select">
+                                        <option>Remote</option>
+                                        <option>On-site</option>
+                                    </select>
+                                </div>
+                                <div class="field-group">
+                                    <label class="form-label">Portfolio Link (Optional)</label>
+                                    <input type="url" class="form-control" placeholder="https://behance.net/yourname">
+                                </div>
+                            </div>
+                            <label class="form-label">Upload Resume (PDF only)</label>
+                            <input type="file" class="form-control" accept=".pdf" required>
+                        </div>
+
+                        <div id="trainingOptions" class="field-group d-none">
+                            <div class="field-group">
+                                <label class="form-label">Training Mode</label>
+                                <select class="form-select">
+                                    <option>Online</option>
+                                    <option>Offline</option>
+                                </select>
+                            </div>
+                            <label class="form-label">Upload CV & Educational Documents</label>
+                            <input type="file" class="form-control" multiple required>
+                            <small style="color: var(--text-muted); font-size: 0.7rem;">You can select multiple files
+                                (CV, Degree, etc.)</small>
+                        </div>
+                        <div id="jobOptions" class="field-group d-none">
+                            <div class="field-group">
+                                <label class="form-label">Preferred Job Type</label>
+                                <select class="form-select">
+                                    <option>Full-time</option>
+                                    <option>Contract</option>
+                                </select>
+                            </div>
+                            <label class="form-label">Upload Resume & Cover Letter</label>
+                            <input type="file" class="form-control" multiple required>
+                        </div>
+                        <div class="field-group">
+                            <label class="form-label">Experience Level</label>
+                            <select class="form-select" required>
+                                <option value="" disabled selected hidden>Select Level</option>
+                                <option>Fresher</option>
+                                <option>0–2 Years</option>
+                                <option>2–5 Years</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="career-btn">Submit Application</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+       <footer class="footer">
+      <div class="footer-container">
+
+        <!-- Company Info -->
+        <div class="footer-col">
+          <img src="../../static/assets/LogicMotive Consultant (1) copy.webp" alt="Logic Motive" class="footer-logo">
+          <p class="footer-desc">
+            Logic-Motive is a technology consulting company delivering SAP,
+            ERP, and digital transformation solutions for growing businesses.
           </p>
+        </div>
 
-          <h5 class="mt-4">What You Get</h5>
-          <ul class="program-list">
-            <li>✔ SAP Module Training</li>
-            <li>✔ Project Management Basics</li>
-            <li>✔ Live Internship Projects</li>
-            <li>✔ Experience Letter</li>
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact Us</a></li>
           </ul>
         </div>
 
-        <!-- Application Form -->
-        <div class="col-lg-6">
-          <div class="career-card">
-            <h4 class="mb-3">Apply Now</h4>
+        <!-- Contact Info -->
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul class="contact-list">
+            <li><i class="fa-solid fa-envelope" ></i> presales@logic-motive.com</li>
+            <li><i class="fa-solid fa-phone"></i> +91-7276075921</li>
+            <li><i class="fa-solid fa-location-dot"></i> India</li>
+          </ul>
 
-            <form enctype="multipart/form-data">
-              <div class="row g-3">
-
-                <div class="col-md-6">
-                  <label class="form-label">Full Name</label>
-                  <input type="text" class="form-control" required>
-                </div>
-
-                <div class="col-md-6">
-                  <label class="form-label">Email Address</label>
-                  <input type="email" class="form-control" required>
-                </div>
-
-                <div class="col-md-6">
-                  <label class="form-label">Mobile Number</label>
-                  <input type="tel" class="form-control" required>
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Module</label>
-                  <select class="form-select" id="moduleSelect" required>
-                    <option value="">Select</option>
-                    <option value="internship">Internship</option>
-                    <option value="training">Training</option>
-                    <option value="job">Job</option>
-
-                  </select>
-                </div>
-                <!-- Internship Options -->
-                <div class="col-md-6 d-none" id="internshipOptions">
-                  <label class="form-label">Internship Type</label>
-                  <select class="form-select">
-                    <option value="">Select</option>
-                    <option>Paid</option>
-                    <option>Unpaid</option>
-                    <option>Remote</option>
-                  </select>
-                  <label class="form-label mt-2">Upload Resume/Portfolio</label>
-                  <input type="file" class="form-control" />
-                </div>
-
-                <!-- Training Options -->
-                <div class="col-md-6 d-none" id="trainingOptions">
-                  <label class="form-label">Training Mode</label>
-                  <select class="form-select">
-                    <option value="">Select</option>
-                    <option>Online</option>
-                    <option>Offline</option>
-                    <option>Hybrid</option>
-                  </select>
-                  <label class="form-label mt-2">Upload CV/Certificate</label>
-                  <input type="file" class="form-control" />
-                </div>
-
-                <!-- Job Options -->
-                <div class="col-md-6 d-none" id="jobOptions">
-                  <label class="form-label">Job Type</label>
-                  <select class="form-select">
-                    <option value="">Select</option>
-                    <option>Full Time</option>
-                    <option>Part Time</option>
-                    <option>Contract</option>
-                  </select>
-                  <label class="form-label mt-2">Upload Resume & Cover Letter</label>
-                  <input type="file" class="form-control" multiple />
-                </div>
-
-                <div class="col-md-6">
-                  <label class="form-label">Experience Level</label>
-                  <select class="form-select" required>
-                    <option value="">Select</option>
-                    <option>Fresher</option>
-                    <option>0–2 Years</option>
-                    <option>2–5 Years</option>
-                    <option>5+ Years</option>
-                  </select>
-                </div>
-                <div class="col-12">
-                  <button type="submit" class="btn btn-primary career-btn">
-                    Submit Application
-                  </button>
-                </div>
-
-              </div>
-            </form>
-
+          <div class="social-links">
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
           </div>
         </div>
 
       </div>
-    </div>
-  </section>
 
-  <footer class="footer">
-    <div class="footer-container">
-
-      <!-- Company Info -->
-      <div class="footer-col">
-        <img src="../../static/assets/LogicMotive Consultant (1).webp" alt="Logic Motive" class="footer-logo">
-        <p class="footer-desc">
-          Logic-Motive is a technology consulting company delivering SAP,
-          ERP, and digital transformation solutions for growing businesses.
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <p>© 2026 Logic-Motive. All Rights Reserved.</p>
+        <p class="footer-legal">
+          CIN: U62099PN2023PTC219132 |
+          GSTIN: 27AAFCL3440F1ZQ
         </p>
       </div>
-
-      <!-- Quick Links -->
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Products</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-      </div>
-
-      <!-- Contact Info -->
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul class="contact-list">
-          <li><i class="fa-solid fa-envelope"></i> sales@logicmotive.in</li>
-          <li><i class="fa-solid fa-phone"></i> +91-7276075921</li>
-          <li><i class="fa-solid fa-location-dot"></i> India</li>
-        </ul>
-
-        <div class="social-links">
-          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#"><i class="fa-brands fa-twitter"></i></a>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Bottom Bar -->
-    <div class="footer-bottom">
-      <p>© 2026 Logic-Motive. All Rights Reserved.</p>
-      <p class="footer-legal">
-        CIN: U62099PN2023PTC219132 |
-        GSTIN: 27AAFCL3440F1ZQ
-      </p>
-    </div>
-  </footer>
+    </footer>
+  
 </body>
-<script>
-  // This code runs independently of main.js
-  const dotMenu = document.querySelector(".dot-menu");
-  const contactSection = document.getElementById("contactSection");
-
-  if (dotMenu && contactSection) {
-    dotMenu.addEventListener('click', function (e) {
-
-
-      if (contactSection.style.display === 'none' || contactSection.style.display === '') {
-        contactSection.style.display = 'block';
-      } else {
-        contactSection.style.display = 'none';
-      }
-    });
-  } else {
-    console.error("Could not find dot-menu or contactSection in the HTML");
-  }
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../static/js/main.js"></script>
+<script src="../../static/js/apply.js"></script>
 
 </html>

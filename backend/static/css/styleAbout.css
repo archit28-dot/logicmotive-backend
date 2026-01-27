@@ -1,184 +1,675 @@
-/* General Reset */
+
+        /* --- ABOUT HERO SECTION --- */
+        /* Force sub-pixel rendering and hardware isolation */
+        .char,
+        #about-title,
+        #about-p,
+        .story-title,
+        #story-description {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: translateZ(0);
+            /* The most important line for sharpness */
+            perspective: 1000px;
+            will-change: transform, opacity;
+        }
+
+        .about-hero {
+            font-family: 'Roboto', 'Open Sans', 'Quicksand', Arial, sans-serif;
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            /* Shorter than the main hero */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .about-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Dark gradient overlay to make white text pop */
+            background: linear-gradient(to right,
+                    rgba(0, 0, 0, 0.9) 0%,
+                    rgba(0, 0, 0, 0) 30%,
+                    rgba(0, 0, 0, 0) 70%,
+                    rgba(0, 0, 0, 0.9) 100%),
+                url('../../static/assets/aboutHero3.avif');
+
+            background-size: cover;
+            background-position: center;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            animation: heroEntry 5s ease-out forwards;
+        }
+
+        .about-hero-content {
+            position: relative;
+            z-index: 10;
+            color: #ffffff;
+            padding: 0 20px;
+            isolation: isolate;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .about-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+
+        .about-hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.3;
+        }
+
+        /* --- CHARACTER BASE STATE --- */
+        .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(15px);
+            /* Subtle rise effect */
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* --- REVEALED STATE --- */
+        .char.visible {
+            opacity: 1;
+            transform: translate3d(0);
+        }
+
+        @keyframes heroEntry {
+            0% {
+                transform: scale(1);
+                filter: blur(10px) brightness(0.8);
+                /* Starts blurry and dark */
+            }
+
+            100% {
+                transform: scale(1.1);
+                filter: blur(0px) brightness(1);
+                /* Ends sharp and clear */
+            }
+        }
+
+        /* Ensure the parent container doesn't hide the text while it's moving */
+        .about-hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- STORY CONTENT STYLING --- */
+        .our-story-container {
+            display: flex;
+            align-items: center;
+            /* Vertically centers text with the image */
+            justify-content: space-between;
+            gap: 100px;
+            /* Space between image and text */
+            padding: 80px 5%;
+            background-color: #ffffff;
+
+        }
+
+        .story-content {
+            flex: 1;
+            /* Takes up equal space in the flex container */
+
+            padding: 20px;
+        }
+
+        .story-title {
+            font-size: 2.8rem;
+            color: #003366;
+            /* Your brand's deep navy */
+            margin-bottom: 35px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+
+        /* Subtle accent line under the title */
+        .story-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: #5189c1;
+            /* Your brand's light blue */
+            border-radius: 2px;
+        }
+
+        .story-description {
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: left;
+            color: #003366;
+            /* THE FIX: Prevents hyphenation and forces whole-word wrapping */
+            overflow-wrap: normal;
+            word-break: normal;
+            hyphens: none;
+
+            /* Ensure the text has enough horizontal space */
+            width: 100%;
+            max-width: 850px;
+            /* Increased from 700px to allow more words per line */
+        }
+
+        /* Character Animation Helper Class */
+        .story-description .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .story-description.char.visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        /* --- IMAGE SIZE CONTROL --- */
+        .story-visual {
+            flex: 0 0 40%;
+            /* Image takes up exactly 40% of the width */
+            max-width: 500px;
+            /* Limits the maximum size on large screens */
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: scale(0.5);
+            /* Starts at half size */
+            transition: transform 1.8s cubic-bezier(0.165, 0.84, 0.44, 1),
+                opacity 1.5s ease;
+            will-change: transform, opacity;
+        }
+
+        .story-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transform: scale(1.3);
+            transition: transform 3s ease;
+            opacity: 0;
+        }
+
+        .our-story-container.is-visible .story-visual {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .our-story-container.is-visible .story-visual img {
+            transform: scale(1);
+            /* Returns to original width/height */
+            opacity: 1;
+        }
+
+        /* --- PREMIUM SECTION BACKGROUND --- */
+        /* --- PREMIUM VM SECTION --- */
+        /* --- SECTION BASE --- */
+        .elite-vm-section {
+            position: relative;
+            padding: 10px 0;
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        /* Background Watermark */
 
 
+        .vm-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
 
-/* Hero Section */
-.hero-section-About-Us {
-    margin-top: 10px;
-    min-height: 260px;
-    width: 100%;
-    background-image: url(../../static/assets/aboutHero3.avif);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    color: white;
+        /* --- THE OFFSET FEATURE --- */
+        .vm-feature {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            /* Elements will overlap */
+            margin-bottom: 100px;
+        }
+
+        .vm-image-box {
+            flex: 1.2;
+            height: 500px;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
+        }
+
+        .vm-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .vm-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, rgba(0, 51, 102, 0.4), transparent);
+        }
+
+        /* --- TEXT BOX (THE OVERLAP) --- */
+        .vm-text-box {
+            flex: 1;
+            background: #ffffff;
+            padding: 30px;
+            margin-left: -100px;
+            /* Forces overlap with image */
+            position: relative;
+            box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.05);
+            border-top: 6px solid #5189c1;
+        }
+
+        .mission-feature .vm-text-box {
+            margin-left: 0;
+            margin-right: -100px;
+            /* Reverse overlap */
+        }
+
+        .vm-index {
+            font-size: 1rem;
+            font-weight: 900;
+            color: #5189c1;
+            letter-spacing: 5px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .vm-text-box h2 {
+            font-size: 3.5rem;
+            color: #003366;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .vm-decorative-line {
+            width: 60px;
+            height: 2px;
+            background: #5189c1;
+            margin-bottom: 30px;
+        }
+
+        .vm-text-box p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: #444;
+        }
+
+        /* Mobile Fixes */
+        @media (max-width: 992px) {
+            .vm-feature {
+                flex-direction: column !important;
+            }
+
+            .vm-text-box {
+                margin: -50px 20px 0 !important;
+                padding: 40px 30px;
+            }
+
+            .vm-image-box {
+                height: 350px;
+                width: 100%;
+            }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 992px) {
+            .our-story-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Container styling */
+
+        :root {
+            --brand-blue: #003366;
+            --banner-yellow: #fff9db;
+            --rose-pink: #f4c2c2;
+        }
+
+        .team-section {
+            background-color: var(--brand-blue);
+            padding: 60px 4%;
+            color: var(--rose-pink);
+            margin-bottom: 10px;
+        }
+
+        /* Header & Banner Styling */
+        .team-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .yellow-banner {
+            background: var(--banner-yellow);
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 50px;
+            gap: 20px;
+            color: #222;
+        }
+
+        .yellow-banner h1 {
+            font-size: 3.5rem;
+            margin: 0;
+        }
+
+        .decor-line {
+            height: 2px;
+            background: var(--rose-pink);
+            width: 80%;
+            margin: 15px auto;
+            position: relative;
+        }
+
+        /* Layout logic for 20 members */
+        .team-layout {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .leader-column {
+            flex: 0 0 350px;
+        }
+
+        /* Fixed width for leader */
+        .members-grid {
+            flex: 1;
+            display: grid;
+            /* Adjusts 20 members into 3 or 4 columns automatically */
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 40px 25px;
+        }
+
+        /* The ARCH Logic */
+        .arch-frame {
+            width: 100%;
+            overflow: hidden;
+            /* This creates the exact window arch */
+            border-radius: 200px 200px 0 0;
+            border: 1px solid rgba(244, 194, 194, 0.3);
+        }
+
+        .arch-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Prevents image stretching */
+            display: block;
+        }
+
+        .featured .arch-frame {
+            height: 480px;
+        }
+
+        .small .arch-frame {
+            height: 200px;
+        }
+
+        /* Text Label Boxes */
+        .label-box {
+            border: 1px solid var(--rose-pink);
+            margin-top: 15px;
+            padding: 15px 5px;
+            text-align: center;
+            position: relative;
+        }
+
+        .label-box h2 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .label-box h3 {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .label-box p {
+            font-size: 0.8rem;
+            margin: 5px 0 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Notches on the side of the box (as seen in image) */
+        .label-box::before {
+            content: "";
+            position: absolute;
+            left: -1px;
+            top: 50%;
+            height: 12px;
+            width: 5px;
+            background: var(--brand-blue);
+            transform: translateY(-50%);
+        }
+
+        /* New Vision/Mission Text Animation States */
+        .vm-text-box h2,
+        .vm-text-box .vm-decorative-line,
+        .vm-text-box p {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* When the "revealed" class is added via JS */
+        .vm-text-box.revealed h2,
+        .vm-text-box.revealed .vm-decorative-line,
+        .vm-text-box.revealed p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggering the elements so they come in one after another */
+        .vm-text-box.revealed h2 {
+            transition-delay: 0.1s;
+        }
+
+        .vm-text-box.revealed .vm-decorative-line {
+            transition-delay: 0.3s;
+        }
+
+        .vm-text-box.revealed p {
+            transition-delay: 0.5s;
+        }
+
+        /* Mobile Responsiveness */
+        /* --- GLOBAL RESPONSIVE ADJUSTMENTS --- */
+
+        /* Tablets (Large Screens) */
+        @media (max-width: 1200px) {
+            .about-hero h1 {
+                font-size: 3.2rem;
+            }
+
+            .vm-text-box h2 {
+                font-size: 2.8rem;
+            }
+
+            .story-title {
+                font-size: 2.4rem;
+            }
+        }
+
+        /* Tablets & Small Laptops (The "Stacking" Point) */
+        @media (max-width: 992px) {
+
+            /* Hero Section */
+            .about-hero {
+                height: 60vh;
+            }
+
+            .about-hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: -1px;
+            }
+
+            /* Our Story Section */
+            .our-story-container {
+                flex-direction: column !important;
+                gap: 40px;
+                padding: 60px 8%;
+                text-align: center;
+            }
+
+            .story-visual {
+                flex: 0 0 100%;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .story-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            /* Center the accent line */
+            .story-description {
+                text-align: center;
+                font-size: 1.1rem;
+            }
+
+            /* Vision & Mission (Remove Overlaps) */
+            .vm-feature,
+            .mission-feature {
+                flex-direction: column !important;
+                margin-bottom: 60px;
+            }
+
+            .vm-text-box {
+                margin: -40px 15px 0 !important;
+                /* Pull text box up over image slightly */
+                width: calc(100% - 30px);
+                padding: 30px 25px;
+                text-align: center;
+                z-index: 2;
+            }
+
+            .vm-decorative-line {
+                margin: 0 auto 20px;
+            }
+
+            .vm-image-box {
+                height: 300px;
+                width: 100%;
+            }
+
+            /* Team Section */
+            .team-layout {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .leader-column {
+                width: 100%;
+                max-width: 350px;
+                margin-bottom: 50px;
+            }
+
+            .members-grid {
+                width: 100%;
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 20px;
+            }
+
+            .yellow-banner h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Mobile Phones (Small Screens) */
+        @media (max-width: 480px) {
+            .about-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .about-hero p {
+                font-size: 1rem;
+            }
+
+            .story-title {
+                font-size: 1.8rem;
+            }
+
+            .vm-text-box h2 {
+                font-size: 2rem;
+            }
+
+            .yellow-banner {
+                padding: 10px 20px;
+            }
+
+            .yellow-banner h1 {
+                font-size: 1.5rem;
+            }
+
+            .globe {
+                display: none;
+            }
+
+            /* Hide icons to save space on tiny screens */
+
+            .label-box h2 {
+                font-size: 1.4rem;
+            }
+
+            .small .arch-frame {
+                height: 180px;
+            }
+        }
+
+        /* 1. Remove the blur entirely from the About page text */
+        .AboutUs .char,
+        .AboutUs .section-title span,
+        .AboutUs #story-description span {
+            filter: none !important;
+            /* Forces the browser to stop calculating blur */
+            -webkit-filter: none !important;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 2. Force a clean rendering layer for the Hero Content */
+        .about-hero-content {
+            isolation: isolate;
+            transform: translateZ(0);
+        }
+
+        /* 3. Fix the blurred text during/after transforms */
+        .char.visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            filter: blur(0) !important;
+            /* Explicitly clear it */
+            will-change: auto;
+            /* Tell the browser it can stop optimizing this layer */
+        }
     
-    text-align: center;
-    padding: 120px 20px;
-}
-
-.hero-section-About-Us h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-}
-
-.hero-section-About-Us h3 {
-    font-size: 22px;
-    font-weight: 400;
-}
-
-/* Our Story Section */
-.our-story {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-     gap: 80px; 
-    max-width: 1200px;
-       margin-top: 80px;
-    padding-bottom: 30px;
-}
-
-.our-story img {
-    padding-top: 0px;
-    width: 400px;
-    border-radius: 10px;
-    object-fit: cover;
-}
-
-.our-story p {
-    font-size: 20px;
-    max-width: 600px;
-    margin: 0;                  /* remove default p margin */
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-    .our-story {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .our-story img {
-        width: 100%;
-        max-width: 400px;
-    }
-}
-
-/* Vision & Mission Section */
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-/* Card Styling */
-.vision-mission-section {
-    background-color: #f8f9fa;
-    align-items: center;
-}
-.vm-container{
-    display: flex;
-}
-.vm-card {
-    background: #ffffff;
-    padding: 35px 30px;
-    border-radius: 12px;
-    text-align: center;
-    height: 100%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-}
-.vm-card:hover .fa-compass {
-    animation: fa-spin 5s infinite linear;
-}
-.vm-card:hover .fa-bullseye {
-    animation: fa-spin 5s infinite linear;
-}
-.vm-card:hover .fa-rocket {
-    animation: bounce 1s infinite;
-}
-.vm-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-}
-
-/* Icon Styling */
-.vm-icon {
-    width: 70px;
-    height: 70px;
-    background-color: #003366; /* Bootstrap primary blue */
-    color: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px auto;
-    font-size: 28px;
-}
-
-/* Heading */
-.vm-card h3 {
-    font-size: 40px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: #212529;
-}
-
-/* Text */
-.vm-card p {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #6c757d;
-    margin-bottom: 0;
-}
-
-/* Responsive tweak */
-@media (max-width: 768px) {
-    .vm-card {
-        padding: 30px 20px;
-    }
-}
-
-
-/*************Meet-our-team **********/
-.meet-our-team {
-    position: relative;
-    z-index: 2;
-    padding: 30px 20px;
-    text-align: center;
-}
-
-.team-container {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.team-card {
-    width: 250px;
-    padding: 20px;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    text-align: center;
-}
-
-.team-card img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-.meet-our-team h2{
-    padding-bottom: 20px;
-     font-size: 30px;
-    line-height: 1.6;
-    color: #000;
-}
-.team-subtitle{
-    font-size: 15px;
-    line-height: 1.6;
-    color: #6c757d; 
-     padding-bottom: 10px;
-}
-
